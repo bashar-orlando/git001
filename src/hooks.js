@@ -9,6 +9,9 @@ export const useSearch = (query) => {
     });
 
     useEffect(() => {
+        if (query.length < 3) {
+            return;
+        }
         // "`"  left-to-right accent is VERY IMPORTANT!!!
         axios.get(`https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${query}`)
             .then(function (response) {
@@ -33,7 +36,7 @@ export const useSearch = (query) => {
                     error: error
                 })
                 //console.log(error);
-                debugger
+                //debugger
           });
     }, [query] );
  
